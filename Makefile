@@ -8,9 +8,16 @@ generate_hdl: check_quartus_path
 		--family="Stratix V" \
 		--part=5SGSMD5K1F40C1 \
 
+# Ugly hack to avoid regenerating the ip more than once, since it will fail
 generate_ip:
-	$(QUARTUS_PATH)/quartus/bin/mw-regenerate ../ip_variations/fortygig_eth_pll/fortygig_eth_pll.v
-	$(QUARTUS_PATH)/quartus/bin/mw-regenerate ../ip_variations/fortygig_eth_mac/fortygig_eth_mac.v
+	if [ ! -f "$(CURDIR)/ip_variations/fortygig_eth_mac/fortygig_eth_mac.ppf" ]; then \
+		$(QUARTUS_PATH)/quartus/bin/mw-regenerate $(CURDIR)/ip_variations/fortygig_eth_mac/fortygig_eth_mac.v; \
+	fi
+
+	if [ ! -f "$(CURDIR)/ip_variations/fortygig_eth_pll/fortygig_eth_pll.ppf" ]; then \
+	   	$(QUARTUS_PATH)/quartus/bin/mw-regenerate $(CURDIR)/ip_variations/fortygig_eth_pll/fortygig_eth_pll.v; \
+	fi
+
 
 build: generate_hdl generate_ip
 	$(QUARTUS_PATH)/quartus/bin/quartus_sh --flow compile project/otma_bringup
