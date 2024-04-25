@@ -1,7 +1,7 @@
 # QUARTUS_PATH should be the root folder of the install
 NIOS_SDK := $(QUARTUS_PATH)/nios2eds/sdk2/bin/
+NIOS_EDS := $(QUARTUS_PATH)/nios2eds/bin/
 NIOS_GCC := $(QUARTUS_PATH)/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/bin/
-
 
 
 generate_hdl: check_quartus_path
@@ -30,7 +30,7 @@ bsp:
 	PATH=$(NIOS_SDK):$$PATH nios2-bsp hal $(CURDIR)/software/otma_bringup_bsp $(CURDIR)/project/system.sopcinfo --cpu-name nios2_gen2_0 --type-version 18.1
 
 firmware: bsp
-	cd $(CURDIR)/software/otma_bringup; PATH=$(NIOS_GCC):$(NIOS_GCC):$$PATH make all
+	cd $(CURDIR)/software/otma_bringup; PATH=$(NIOS_SDK):$(NIOS_EDS):$(NIOS_GCC):$$PATH make all
 
 all: gateware firmware
 
