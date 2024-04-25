@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
-        <BspVersion>16.1</BspVersion>
+        <BspVersion>18.1</BspVersion>
         <BspGeneratedTimeStamp>Sep 26, 2020 6:09:24 PM</BspGeneratedTimeStamp>
         <BspGeneratedUnixTimeStamp>1601136564763</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>/home/jan/Projects/FPGA/otma-fpga-bringup/software/otma_bringup_bsp</BspGeneratedLocation>
