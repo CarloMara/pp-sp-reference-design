@@ -2,7 +2,7 @@
 NIOS_SDK := $(QUARTUS_PATH)/nios2eds/sdk2/bin/
 NIOS_EDS := $(QUARTUS_PATH)/nios2eds/bin/
 NIOS_GCC := $(QUARTUS_PATH)/nios2eds/bin/gnu/H-x86_64-pc-linux-gnu/bin/
-
+QUARTUS_BIN := $(QUARTUS_PATH)/quartus/bin/
 
 generate_hdl: check_quartus_path
 	$(QUARTUS_PATH)/quartus/sopc_builder/bin/qsys-generate \
@@ -40,6 +40,9 @@ setup_ftdi:
 
 flash:
 	$(QUARTUS_PATH)/quartus/bin/quartus_pgm -c "OTMA FT232H" $(CURDIR)/project/output_files/otma_bringup.cdf
+
+flash_fw: bsp
+	cd $(CURDIR)/software/otma_bringup; PATH=$(NIOS_SDK):$(NIOS_EDS):$(NIOS_GCC):$(QUARTUS_BIN):$$PATH make download-elf
 
 check_quartus_path:
 	@if [ -z "$$QUARTUS_PATH" ]; then \
