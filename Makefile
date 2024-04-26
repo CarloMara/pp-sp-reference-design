@@ -34,6 +34,13 @@ firmware: bsp
 
 all: gateware firmware
 
+setup_ftdi:
+	openocd -f interface/ftdi/um232h.cfg \
+		-c "adapter speed 20000; transport select jtag; jtag newtap auto0 tap -irlen 10 -expected-id 0x029070dd; init; exit;"
+
+flash:
+	$(QUARTUS_PATH)/quartus/bin/quartus_pgm -c "OTMA FT232H" $(CURDIR)/project/output_files/otma_bringup.cdf
+
 check_quartus_path:
 	@if [ -z "$$QUARTUS_PATH" ]; then \
 		echo "QUARTUS_PATH is not set. Please set the QUARTUS_PATH environment variable."; \
