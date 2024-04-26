@@ -2,10 +2,10 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>18.1</BspVersion>
-        <BspGeneratedTimeStamp>Sep 26, 2020 6:09:24 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1601136564763</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>/home/jan/Projects/FPGA/otma-fpga-bringup/software/otma_bringup_bsp</BspGeneratedLocation>
-        <BspSettingsFile>settings.bsp</BspSettingsFile>
+        <BspGeneratedTimeStamp>Apr 26, 2024 5:48:21 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1714146501257</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>../../software/otma_bringup_bsp</BspGeneratedLocation>
+        <BspSettingsFile>/home/carlo/Documents/pp/pp-sp-reference-design/software/otma_bringup_bsp/settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../qsys/system.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
         <Cpu>nios2_gen2_0</Cpu>
