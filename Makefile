@@ -40,7 +40,7 @@ setup_ftdi:
 
 # https://community.intel.com/t5/Intel-Quartus-Prime-Software/Using-command-line-tool-to-generate-cdf-file-from-jic-and-sof/m-p/661731
 # $(QUARTUS_PATH)/quartus/bin/quartus_pgm -c "OTMA FT232H" $(CURDIR)/project/output_files/otma_bringup.cdf
-# sof are nicer but broken, so this is what we have to do. This will fail if file doesn't exist. Maybe add a check?
+# cdf are nicer but broken, so this is what we have to do. This will fail if file doesn't exist. Maybe add a check?
 flash:
 	$(QUARTUS_PATH)/quartus/bin/quartus_pgm -c "OTMA FT232H" -m JTAG -o "p;$(CURDIR)/project/output_files/otma_bringup_time_limited.sof@1"
 
