@@ -59,3 +59,5 @@ check_quartus_path:
 clean:
 	git reset --hard; git clean -d -f
 	rm -rf project/output_files
+	rm -rf qsys/system
+	rm qsys/system.sopcinfo
