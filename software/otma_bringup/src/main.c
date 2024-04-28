@@ -150,20 +150,22 @@ int main() {
   idt8nxq001_decode_conf(idt_rx_buf, &conf);
   idt8nxq001_conf_print(&conf);
 
-  IOWR_ALTERA_AVALON_PIO_DATA(PIO_40G_ETH_RESET_BASE, 0x7);
-  usleep(1e5);
-  IOWR_ALTERA_AVALON_PIO_DATA(PIO_40G_ETH_RESET_BASE, 0x0);
-  usleep(1e5);
+  // IOWR_ALTERA_AVALON_PIO_DATA(PIO_40G_ETH_RESET_BASE, 0x7);
+  // usleep(1e5);
+  // IOWR_ALTERA_AVALON_PIO_DATA(PIO_40G_ETH_RESET_BASE, 0x0);
+  // usleep(1e5);
 
   while (1) {
     uint32_t cc_idt_clk_freq = clock_counter_get_freq(CLOCK_COUNTER_0_BASE, 1);
     printf("Clock frequency [X]: %ld MHz\n", cc_idt_clk_freq);
 
-    fortygig_eth_get_info(FORTYGIG_ETH_STATUS_BASE);
+    // fortygig_eth_get_info(FORTYGIG_ETH_STATUS_BASE);
 
     IOWR_ALTERA_AVALON_PIO_DATA(PIO_0_BASE, 1);
+    printf("ON");
     usleep(5e5);
     IOWR_ALTERA_AVALON_PIO_DATA(PIO_0_BASE, 0);
     usleep(5e5);
+    printf("OFF");
   }
 }
