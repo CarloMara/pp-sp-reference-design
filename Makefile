@@ -55,3 +55,4 @@ check_quartus_path:
 
 clean:
 	git reset --hard; git clean -d -f
+	rm -rf project/output_files
