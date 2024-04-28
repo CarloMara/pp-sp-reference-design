@@ -44,6 +44,9 @@ flash:
 flash_fw: bsp
 	cd $(CURDIR)/software/otma_bringup; PATH=$(NIOS_SDK):$(NIOS_EDS):$(NIOS_GCC):$(QUARTUS_BIN):$$PATH make download-elf
 
+nios_console:
+	$(QUARTUS_BIN)/nios2-terminal
+
 check_quartus_path:
 	@if [ -z "$$QUARTUS_PATH" ]; then \
 		echo "QUARTUS_PATH is not set. Please set the QUARTUS_PATH environment variable."; \
