@@ -52,3 +52,6 @@ check_quartus_path:
 		echo "QUARTUS_PATH is not set. Please set the QUARTUS_PATH environment variable."; \
 		exit 1; \
 	fi
+
+clean:
+	git reset --hard; git clean -d -f
