@@ -38,8 +38,11 @@ setup_ftdi:
 	openocd -f interface/ftdi/um232h.cfg \
 		-c "adapter speed 20000; transport select jtag; jtag newtap auto0 tap -irlen 10 -expected-id 0x029070dd; init; exit;"
 
+# https://community.intel.com/t5/Intel-Quartus-Prime-Software/Using-command-line-tool-to-generate-cdf-file-from-jic-and-sof/m-p/661731
+# $(QUARTUS_PATH)/quartus/bin/quartus_pgm -c "OTMA FT232H" $(CURDIR)/project/output_files/otma_bringup.cdf
+# sof are nicer but broken, so this is what we have to do. This will fail if file doesn't exist. Maybe add a check?
 flash:
-	$(QUARTUS_PATH)/quartus/bin/quartus_pgm -c "OTMA FT232H" $(CURDIR)/project/output_files/otma_bringup.cdf
+	$(QUARTUS_PATH)/quartus/bin/quartus_pgm -c "OTMA FT232H" -m JTAG -o "p;$(CURDIR)/project/output_files/otma_bringup_time_limited.sof@1"
 
 flash_fw: bsp
 	cd $(CURDIR)/software/otma_bringup; PATH=$(NIOS_SDK):$(NIOS_EDS):$(NIOS_GCC):$(QUARTUS_BIN):$$PATH make download-elf
