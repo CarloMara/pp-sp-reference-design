@@ -168,32 +168,32 @@ set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to XCVR_QSFP0_TX[0]
 
 # QSFP 1
 
-# set_location_assignment PIN_J4 -to XCVR_QSFP1_TX[0]
-# set_location_assignment PIN_G4 -to XCVR_QSFP1_TX[1]
-# set_location_assignment PIN_E4 -to XCVR_QSFP1_TX[2]
-# set_location_assignment PIN_C4 -to XCVR_QSFP1_TX[3]
-# set_location_assignment PIN_K2 -to XCVR_QSFP1_RX[0]
-# set_location_assignment PIN_H2 -to XCVR_QSFP1_RX[1]
-# set_location_assignment PIN_F2 -to XCVR_QSFP1_RX[2]
-# set_location_assignment PIN_D2 -to XCVR_QSFP1_RX[3]
+set_location_assignment PIN_J4 -to XCVR_QSFP1_TX
+set_location_assignment PIN_G4 -to XCVR_QSFP1_TX[1]
+set_location_assignment PIN_E4 -to XCVR_QSFP1_TX[2]
+set_location_assignment PIN_C4 -to XCVR_QSFP1_TX[3]
+set_location_assignment PIN_K2 -to XCVR_QSFP1_RX
+set_location_assignment PIN_H2 -to XCVR_QSFP1_RX[1]
+set_location_assignment PIN_F2 -to XCVR_QSFP1_RX[2]
+set_location_assignment PIN_D2 -to XCVR_QSFP1_RX[3]
 
-# set_location_assignment PIN_J3 -to "XCVR_QSFP1_TX[0](n)"
-# set_location_assignment PIN_G3 -to "XCVR_QSFP1_TX[1](n)"
-# set_location_assignment PIN_E3 -to "XCVR_QSFP1_TX[2](n)"
-# set_location_assignment PIN_C3 -to "XCVR_QSFP1_TX[3](n)"
-# set_location_assignment PIN_K1 -to "XCVR_QSFP1_RX[0](n)"
-# set_location_assignment PIN_H1 -to "XCVR_QSFP1_RX[1](n)"
-# set_location_assignment PIN_F1 -to "XCVR_QSFP1_RX[2](n)"
-# set_location_assignment PIN_D1 -to "XCVR_QSFP1_RX[3](n)"
+set_location_assignment PIN_J3 -to "XCVR_QSFP1_TX(n)"
+set_location_assignment PIN_G3 -to "XCVR_QSFP1_TX[1](n)"
+set_location_assignment PIN_E3 -to "XCVR_QSFP1_TX[2](n)"
+set_location_assignment PIN_C3 -to "XCVR_QSFP1_TX[3](n)"
+set_location_assignment PIN_K1 -to "XCVR_QSFP1_RX(n)"
+set_location_assignment PIN_H1 -to "XCVR_QSFP1_RX[1](n)"
+set_location_assignment PIN_F1 -to "XCVR_QSFP1_RX[2](n)"
+set_location_assignment PIN_D1 -to "XCVR_QSFP1_RX[3](n)"
 
-# set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to XCVR_QSFP1_RX[3]
-# set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to XCVR_QSFP1_RX[2]
-# set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to XCVR_QSFP1_RX[1]
-# set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to XCVR_QSFP1_RX[0]
-# set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to XCVR_QSFP1_TX[3]
-# set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to XCVR_QSFP1_TX[2]
-# set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to XCVR_QSFP1_TX[1]
-# set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to XCVR_QSFP1_TX[0]
+set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to XCVR_QSFP1_RX[3]
+set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to XCVR_QSFP1_RX[2]
+set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to XCVR_QSFP1_RX[1]
+set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to XCVR_QSFP1_RX
+set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to XCVR_QSFP1_TX[3]
+set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to XCVR_QSFP1_TX[2]
+set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to XCVR_QSFP1_TX[1]
+set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to XCVR_QSFP1_TX
 
 
 set_global_assignment -name ENABLE_SIGNALTAP ON

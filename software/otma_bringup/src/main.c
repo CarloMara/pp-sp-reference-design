@@ -30,40 +30,42 @@ uint32_t clock_counter_get_freq(uint32_t base, int clk_index) {
 
 const uint32_t FORTYGIG_ETH_VERSION = 0x00e01400; // 0x00E01310;
 
-void fortygig_eth_get_info(uint32_t base){
+void tse_get_info(uint32_t base){
 
 	uint32_t version = IORD_32DIRECT(base, 0);
-	printf("40G Eth: version = %08lx (%s)\n", version, version == FORTYGIG_ETH_VERSION ? "OK" : "ERROR");
+	printf("tse: version = %08lx (%s)\n", version, version == FORTYGIG_ETH_VERSION ? "OK" : "UNK");
 
 	IOWR_32DIRECT(base, 4, 0xABCD1234);
 	uint32_t scratch = IORD_32DIRECT(base, 4);
-	printf("40G Eth: scratch reg, written 0xABCD1234, read back %08lx\n", scratch);
+	printf("tse: scratch reg, written 0xABCD1234, read back %08lx\n", scratch);
 
 	IOWR_32DIRECT(base, 4, 0xFFFFFFFF);
 	scratch = IORD_32DIRECT(base, 4);
-	printf("40G Eth: scratch reg, written 0xFFFFFFFF, read back %08lx\n", scratch);
+	printf("tse: scratch reg, written 0xFFFFFFFF, read back %08lx\n", scratch);
 
 	IOWR_32DIRECT(base, 4, 0x01020304);
 	scratch = IORD_32DIRECT(base, 4);
-	printf("40G Eth: scratch reg, written 0x01020304, read back %08lx\n", scratch);
+	printf("tse: scratch reg, written 0x01020304, read back %08lx\n", scratch);
 
-	uint32_t clk_txs = IORD_32DIRECT(base, 8);
-	uint32_t clk_rxs = IORD_32DIRECT(base, 12);
-	uint32_t clk_txc = IORD_32DIRECT(base, 16);
-	uint32_t clk_rxc = IORD_32DIRECT(base, 20);
+	printf("tse: tx and rx enable, loop en");
+  IOWR_32DIRECT(base, 4, 0x800B);
 
-	printf("40G Eth: TX serial clk rate = %ld kHz\n", clk_txs);
-	printf("40G Eth: RX serial clk rate = %ld kHz\n", clk_rxs);
-	printf("40G Eth: TX core clk rate = %ld kHz\n", clk_txc);
-	printf("40G Eth: RX core clk rate = %ld kHz\n", clk_rxc);
+	// uint32_t clk_rxs = IORD_32DIRECT(base, 12);
+	// uint32_t clk_txc = IORD_32DIRECT(base, 16);
+	// uint32_t clk_rxc = IORD_32DIRECT(base, 20);
 
-	uint32_t io_locks = IORD_32DIRECT(base, 0x10*4);
-	uint32_t io_locks_tx_pll = (io_locks >> 6) & 0x1;
-	uint32_t io_locks_rx_cdr = (io_locks >> 2) & 0xF;
-	printf("40G Eth: TX PLL lock = %ld, RX CDR lock = 0x%lx\n", io_locks_tx_pll, io_locks_rx_cdr);
+	// printf("tse: TX serial clk rate = %ld kHz\n", clk_txs);
+	// printf("tse: RX serial clk rate = %ld kHz\n", clk_rxs);
+	// printf("tse: TX core clk rate = %ld kHz\n", clk_txc);
+	// printf("tse: RX core clk rate = %ld kHz\n", clk_rxc);
 
-	uint32_t pcs_hw_err = IORD_32DIRECT(base, 0x17*4);
-	printf("40G Eth: PCS HW error = 0x%lx\n", pcs_hw_err);
+	// uint32_t io_locks = IORD_32DIRECT(base, 0x10*4);
+	// uint32_t io_locks_tx_pll = (io_locks >> 6) & 0x1;
+	// uint32_t io_locks_rx_cdr = (io_locks >> 2) & 0xF;
+	// printf("tse: TX PLL lock = %ld, RX CDR lock = 0x%lx\n", io_locks_tx_pll, io_locks_rx_cdr);
+
+	// uint32_t pcs_hw_err = IORD_32DIRECT(base, 0x17*4);
+	// printf("tse: PCS HW error = 0x%lx\n", pcs_hw_err);
 }
 
 
@@ -155,17 +157,16 @@ int main() {
   // IOWR_ALTERA_AVALON_PIO_DATA(PIO_40G_ETH_RESET_BASE, 0x0);
   // usleep(1e5);
 
+  idt8nxq001_conf_print(&conf);
+
   while (1) {
-    uint32_t cc_idt_clk_freq = clock_counter_get_freq(CLOCK_COUNTER_0_BASE, 1);
-    printf("Clock frequency [X]: %ld MHz\n", cc_idt_clk_freq);
-
-    // fortygig_eth_get_info(FORTYGIG_ETH_STATUS_BASE);
-
-    IOWR_ALTERA_AVALON_PIO_DATA(PIO_0_BASE, 1);
-    printf("ON");
-    usleep(5e5);
-    IOWR_ALTERA_AVALON_PIO_DATA(PIO_0_BASE, 0);
-    usleep(5e5);
-    printf("OFF");
+    uint32_t cc_idt_clk_freq = clock_counter_get_freq(CLOCK_COUNTER_0_BASE, 0);
+    printf("Clock frequency 0 [X]: %ld MHz\n", cc_idt_clk_freq);
+    cc_idt_clk_freq = clock_counter_get_freq(CLOCK_COUNTER_0_BASE, 1);
+    printf("Clock frequency 1 [X]: %ld MHz\n", cc_idt_clk_freq);
+    cc_idt_clk_freq = clock_counter_get_freq(CLOCK_COUNTER_0_BASE, 2);
+    printf("Clock frequency 2 [X]: %ld MHz\n", cc_idt_clk_freq);
+    // tse_get_info(ETH_TSE_0_BASE);
+    usleep(1e5);
   }
 }
